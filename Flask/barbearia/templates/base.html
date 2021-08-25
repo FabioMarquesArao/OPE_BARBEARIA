@@ -1,68 +1,73 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 
-        {% block tile %}
-        {% endblock %}
-    </title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
     {% block style %}
     {% endblock %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>
+        {% block title%}
+        {% endblock %}
+    </title>
 </head>
 <body>
-    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
-        <div class="container">
-            <a href="/" class="navbar-brand d-flex w-50 me-auto">Barbearia Dom Figaro 
-                <i style="margin-left: 5px;"    class="bi bi-scissors"></i></a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-                <ul class="navbar-nav w-100 justify-content-center">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Serviços</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Galeria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contato</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Agendamento</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fab fa-instagram fa-2x"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fab fa-whatsapp fa-2x"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fab fa-facebook fa-2x"></i></a>
-                    </li>
-                    
-                        </ul>
-                    </li>
-                </ul>
+    <nav class="navbar">
+        <div class="content">
+            <div class="logo"><a href="#"><i style="margin-left: 5px;"    class="bi bi-scissors"></i>Dom Figaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i></a></div>
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#">Galeria</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Agendamento</a></li>
+            </ul>
+            <ul class="icon-list">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                </li>
+            </ul>
+            <div class="icon menu-btn">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </nav> 
-       {% block content %}
-       {% endblock %}
+    </nav>
+
+    {% block content%}
+    {% endblock %}
+
+    <script>
+        const body = document.querySelector("body");
+        const menu = document.querySelector(".menu-list");
+        const navbar = document.querySelector(".navbar");
+        const menuBtn = document.querySelector(".menu-btn");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        menuBtn.onclick = ()=>{
+            menu.classList.add("active");
+            body.classList.add("disabledScroll");
+            menuBtn.classList.add("hide");
+        };
+        cancelBtn.onclick = ()=>{
+            menu.classList.remove("active");
+            body.classList.remove("disabledScroll");
+            menuBtn.classList.remove("hide");
+        };
+        window.onscroll = ()=>{
+            this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+        };
+    </script>
 </body>
 </html>
