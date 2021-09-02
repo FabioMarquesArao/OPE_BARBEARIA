@@ -1,8 +1,8 @@
 from barbearia import app
 from flask import render_template, request, redirect, url_for
 
-from Flask.run import Cadastrousuario
-from Flask.run import db
+from run import db
+from run import Cadastrousuario
 
 
 @app.route('/')
