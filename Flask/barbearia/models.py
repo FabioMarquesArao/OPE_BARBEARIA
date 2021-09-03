@@ -5,9 +5,9 @@ class Usuario(db.Model):
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     email = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
-    cpf = db.Column(db.String(length=11), nullable=False)
-    telefone = db.Column(db.String(length=11), nullable=False)
-    dataNascimento = db.Column(db.String(length=14), nullable=False)  
+    cpf = db.Column(db.String(length=14), nullable=False)
+    telefone = db.Column(db.String(length=14), nullable=False)
+    data_nascimento = db.Column(db.String(length=14), nullable=False)
 
 
     def __repr__(self):

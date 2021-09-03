@@ -11,7 +11,7 @@ class RegisterForm(FlaskForm):
     senha = PasswordField(label='Senha:', validators=[DataRequired(), Length(min=6)])
     confirmaSenha = PasswordField(label='Confirme a Senha:', validators=[EqualTo('senha')])
     submit = SubmitField(label='Criar Conta')
-    dataNascimento = StringField(label='Data de Nascimento:', validators=[DataRequired(), Length(max=14)])
+    data_nascimento = StringField(label='Data de Nascimento:', validators=[DataRequired(), Length(max=14)])
 
 
 

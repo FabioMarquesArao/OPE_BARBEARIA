@@ -4,6 +4,8 @@ from barbearia.forms import RegisterForm
 from barbearia.models import Usuario
 from barbearia import db
 
+db.create_all()
+
 @app.route('/home')
 @app.route('/')
 def home_page():
@@ -16,7 +18,7 @@ def cadastro_page():
     if form.validate_on_submit():
         novo_usuario = Usuario(username=form.username.data, password_hash=form.senha.data,
                                email=form.email.data, cpf=form.cpf.data,
-                               telefone=form.telefone.data, dataNascimento=form.dataNascimento.data)
+                               telefone=form.telefone.data, data_nascimento=form.data_nascimento.data)
         db.session.add(novo_usuario)
         db.session.commit()
         return redirect(url_for("home_page"))
