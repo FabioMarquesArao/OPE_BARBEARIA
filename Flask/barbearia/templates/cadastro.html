@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>Barbearia Dom Figaro - Cadastro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastro.css') }}">
+</head>
+<body>
+    <div class="registration-form">}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-icon">
+                <span><i class="bi bi-scissors"></i></span>
+            </div>
+            <div>
+                <h1>Cadastro de Usuário</h1>
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" class="form-control item" id="nome" name="nome" placeholder="Nome" required> -->
+                {{ form.username(class="form-control item", placeholder="Nome") }}
+            </div>
+            <div class="form-group">
+                <!-- <input type="password" class="form-control item" id="senha" name="senha" placeholder="Senha" required> -->
+                {{ form.senha(class="form-control item", placeholder="Senha") }}
+            </div>
+            <div class="form-group">
+                <!-- <input type="password" class="form-control item" id="senha" name="senha" placeholder="Senha" required> -->
+                {{ form.confirmaSenha(class="form-control item", placeholder="Confirmar senha") }}
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" class="form-control item" id="email" placeholder="E-mail" name="email" required> -->
+                {{ form.email(class="form-control item", placeholder="Email") }}
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" class="form-control item" id="cpf" placeholder="CPF" name="cpf" required> -->
+                {{ form.cpf(id="cpf", class="form-control item", placeholder="CPF") }}
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" class="form-control item" id="telefone" placeholder="Telefone" name="telefone" required> -->
+                {{ form.telefone(id="telefone", class="form-control item", placeholder="Telefone") }}
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" class="form-control item" id="datanascimento" placeholder="Data de nascimento" name="datanascimento" required> -->
+                {{ form.dataNascimento(id="datanascimento", class="form-control item", placeholder="Data de nascimento") }}
+            </div>
+
+            <div class="form-group">
+                <!-- <button type="submit" class="btn btn-block create-account">Criar conta</button> -->
+                {{ form.submit(class="btn btn-block create-account") }}
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+
+</html>
