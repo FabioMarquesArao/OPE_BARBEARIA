@@ -3,6 +3,8 @@ from flask import render_template, redirect, url_for
 from barbearia.forms import RegisterForm
 from barbearia.models import Usuario
 from barbearia import db
+from barbearia.email_sender import email_cadastro
+
 
 db.create_all()
 
@@ -21,6 +23,7 @@ def cadastro_page():
                                telefone=form.telefone.data, data_nascimento=form.data_nascimento.data)
         db.session.add(novo_usuario)
         db.session.commit()
+        email_cadastro(novo_usuario.username,novo_usuario.email)
         return redirect(url_for("home_page"))
     if form.errors != {}:
         print(form.errors)
