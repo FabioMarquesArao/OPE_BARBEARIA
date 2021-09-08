@@ -46,6 +46,21 @@
     margin-left: 25px;
     text-decoration: none;
 }
+#login{
+    display: -block;
+    padding: 3px 6px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: .1rem;
+}
+#login:hover{
+    background-color: white;
+    color: crimson;
+}
 .menu-list li a:hover{
     color: crimson;
 }
