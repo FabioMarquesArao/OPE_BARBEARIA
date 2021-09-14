@@ -25,7 +25,7 @@ def cadastro_page():
                                telefone=form.telefone.data, data_nascimento=form.data_nascimento.data)
         db.session.add(novo_usuario)
         db.session.commit()
-        # email_cadastro(novo_usuario.username,novo_usuario.email)
+        email_cadastro(novo_usuario.username,novo_usuario.email)
         login_user(novo_usuario)
         flash(f'Conta criada com sucesso! Você está logado como: {novo_usuario.username}', category='success')
         return redirect(url_for("home_page"))
