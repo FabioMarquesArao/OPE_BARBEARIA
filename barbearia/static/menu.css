@@ -3,35 +3,37 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing:border-box;
     font-family: "Montserrat", sans-serif;
 }
 .content{
-    max-width: 1250px;
+    max-width: 2200px;
     margin: auto;
-    padding: 0px 30px;
+    padding: 0px 25px;
 }
 .navbar{
     position: fixed;
     z-index: 5;
     width: 100%;
-    padding: 25px 0;
+    padding: 0px 0;
     transition: all .3s ease;
 }
 .navbar.sticky{
-    padding: 15px 0;
+    padding: 30px 0px;
     background: #1b1b1b;
 }
 .navbar .content{
     display: flex;
-    align-items: center;
+    align-items:baseline;
     justify-content: space-between;
 }
 .navbar .logo a{
+    max-width: 1800px;
     color: #fff;
     font-size: 30px;
     font-weight: bolder;
     text-decoration: none;
+    margin-left: auto;
 }
 .navbar .menu-list{
     display: inline-flex;
@@ -43,7 +45,8 @@
     color: #fff;
     font-size: 18px;
     font-weight: bolder;
-    margin-left: 25px;
+    margin-left: 15px;
+  
     text-decoration: none;
 }
 #login{
@@ -69,6 +72,8 @@
     font-size: 25px;
     cursor: pointer;
     display: none;
+    margin-left: auto;
+    
      
 }
 .icon.cancel-btn{
@@ -78,9 +83,13 @@
 }
 .nav-item{
     display: inline-flex;
+    margin-left:auto;
+
+   
 }
 .nav-item li{
     list-style: none;
+    
 }
 .nav-link{
     color: #fff;
@@ -91,27 +100,27 @@
 /* end navbar */
 
 
-@media (max-width: 868px){
+@media (max-width: 885px){
     body.disabledScroll{
         overflow: hidden;
     }
     .icon{
-        display: block;
+        display:flex;
     }
     .icon.hide{
         display: none;
     }
     .navbar .menu-list{
-        position: fixed;
-        top: 0;
+        position:absolute;
+        margin-top: 40px;
         left: -100%;
         height: 100vh;
         width: 100%;
-        max-width: 400px;
+        max-width: 300px;
         background: #222;
         display: block;
         padding: 40px 0;
-        text-align: center;
+        text-align:left;
         transition: all 0.4s ease;
     }
     .navbar .menu-list.active{
@@ -133,7 +142,7 @@
         background: #222;
         display: block;
         padding: 40px 0;
-        text-align: center;
+        text-align: left;
         transition: all 0.4s ease;
     }
 }

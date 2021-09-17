@@ -15,7 +15,7 @@
     </title>
 </head>
 <body>
-    <nav class="navbar">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
@@ -27,13 +27,13 @@
         {% endif %}
         {% endwith %}
         <div class="content">
-            <div class="logo" href="#home"><a href="#"><i style="margin-left: 5px;"    class="bi bi-scissors"></i>Dom Fígaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i></a></div>
+            <div class="logo" href="#home"><a href="#"><i class="bi bi-scissors"></i>Dom Fígaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i></a></div>
             <ul class="menu-list">
                 <div class="icon cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
                 {% if request.path == "/home" or request.path == "/" %}
-                <li><a class="active" href="#home">Home</a></li>
+                <li><a class="active" href="#home" >Home</a></li>
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#">Galeria</a></li>
@@ -54,7 +54,7 @@
                 {% endif %}
             </ul>
             <ul class="icon-list">
-                <li class="nav-item">
+                <li class="nav-item"  >
                     <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
                 </li>
                 <li class="nav-item">
@@ -89,9 +89,10 @@
             body.classList.remove("disabledScroll");
             menuBtn.classList.remove("hide");
         };
-        window.onscroll = ()=>{
-            this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+         window.onscroll = ()=>{
+            this.scrollY >20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
         };
+  
     </script>
 </body>
 </html>
