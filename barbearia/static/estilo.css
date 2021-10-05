@@ -245,7 +245,7 @@ p{
   }
 
 #galery{
-    background-color: black;
+    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(./imgs/fundoSobre3.jpg);
     background-attachment: fixed;
 }
 #galery .carousel-inner{
@@ -257,6 +257,15 @@ p{
     list-style: none;
     text-decoration: none;
     background-color:black;
+}
+#galleryButton{
+    height: 50px;
+    width: 50px;
+    outline: crimson;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    border: 1px solid crimson;
+    background-color: crimson;
 }
 #contact{
     background-color:black;
