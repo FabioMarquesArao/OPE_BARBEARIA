@@ -15,7 +15,11 @@
     </title>
 </head>
 <body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    {% if request.path not in ['/', 'home'] %}
+    <nav class="navbar navbar-expand-lg sticky">
+    {% else %}
+    <nav class="navbar navbar-expand-lg">
+    {% endif %}
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
@@ -40,7 +44,7 @@
                 <li><a href="#contact">Contato</a></li>
                 <li><a href="#">Agendamento</a></li>
                 {% else %}
-                <li><a class="active" href="{{url_for('home_page')}}"">Home</a></li>
+                <li><a class="active" href="{{url_for('home_page')}}">Home</a></li>
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#">Galeria</a></li>

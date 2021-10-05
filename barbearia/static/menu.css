@@ -9,17 +9,16 @@
 .content{
     max-width: 2200px;
     margin: auto;
-    padding: 0px 25px;
+    padding: 0px 30px;
 }
 .navbar{
     position:fixed;
     z-index: 5;
     width: 100%;
-    padding: 0px 0;
+    padding-top: 15px;
     transition: all .3s ease;
 }
 .navbar.sticky{
-    padding: 5px 0;
     background: #1b1b1b;
 }
 .navbar .content{
