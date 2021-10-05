@@ -32,3 +32,9 @@ class Usuario(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)       #checks if the password in database matches the one attempted by user
 
 
+class Agendamento(db.Model):
+    id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    start_atend = db.Column(db.String(), nullable=False, unique=True)
+    end_atend = db.Column(db.String(), nullable=False, unique=True)
+    title = db.Column(db.String(length=150), nullable=False)
+

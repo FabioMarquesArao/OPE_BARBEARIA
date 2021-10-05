@@ -52,3 +52,7 @@ def logout_page():
     logout_user()
     flash("Você foi desconectado", category="info")
     return redirect(url_for("home_page"))
+
+@app.route("/agendamento")
+def agendamento_page():
+    return render_template("calendar.html")

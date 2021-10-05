@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset='utf-8' />
+    <link href="{{ url_for('static', filename='main.min.css') }}"  rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link href="{{ url_for('static', filename='calendar.css') }}"  rel='stylesheet'>
+    <script src="{{ url_for('static', filename='main.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='pt-br.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</head>
+<body>
+
+  <div id='calendar'></div>
+  
+<!-- Modal para visualizar agendamentos existentes-->
+    <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalhes do Agendamento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <dl class="row">
+                <dt class="col-sm-3">ID do Agendamento</dt>
+                <dd class="col-sm-9" id="id"></dt>
+
+                <dt class="col-sm-3">Titulo</dt>
+                <dd class="col-sm-9" id="title"></dt>
+
+                <dt class="col-sm-3">Início</dt>
+                <dd class="col-sm-9" id="start"></dt>
+
+                <dt class="col-sm-3">Fim</dt>
+                <dd class="col-sm-9" id="end"></dt>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cadastrar Evento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+  
+            <!-- Inicio do Form -->
+            <form id="addEvent" metho="POST">
+                <!-- Seleção de serviços  -->
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> Selecione o serviço</label>
+                <div class="col-sm-10">
+                  <select name="servico" id="servico" class="form-control">
+                    <option selected value="">Selecione...</option>
+                    <option value="Corte Simples">Corte Simples</option>
+                    <option value="Corte + Barba">Corte + Barba</option>
+                    <option value="Seladinho">Seladinho</option>
+                    <option value="Química">Química</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Seleção de Barbeiros -->
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> Selecione o Barbeiro</label>
+                  <div class="col-sm-10">
+                    <select name="barbeiros" id="barbeiros" class="form-control">
+                      <option selected>Selecione...</option>
+                      <option>barbeiro 1</option>
+                      <option>barbeiro 2 </option>
+                      <option>barbeiro 3</option>
+                    </select>
+                </div>
+              </div>
+
+                <!-- Horario de atendimento -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"> Início do atendimento</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="start" class="form-control date-time" id="start" onkeypress="DataHora(event, this)">
+                    </div>
+                  </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"> Fim do atendimento</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="end" class="form-control" id="end" onkeypress="DataHora(event, this)">
+                    </div>
+                </div>
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <button type="submit" name="agendEvent" id="agendEvent" value="agendEvent" class="btn btn-success">Agendar</button>
+                      </div>
+                    </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</body>
+</html>

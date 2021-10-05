@@ -245,8 +245,12 @@ p{
   }
 
 #galery{
-    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(./imgs/fundoSobre3.jpg);
-    background-attachment: fixed;
+    background: url(./imgs/fundoSobre3.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size:  cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
 }
 #galery .carousel-inner{
     max-width: 900px;
@@ -264,8 +268,8 @@ p{
     outline: crimson;
     background-size: 100%, 100%;
     border-radius: 50%;
-    border: 1px solid crimson;
-    background-color: crimson;
+    border: 1px solid black;
+    background-color: black;
 }
 #contact{
     background-color:black;
