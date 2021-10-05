@@ -6,12 +6,10 @@
     background-position: 100%;
     list-style: none;
     text-decoration: none;
-    
 }
 html{
     font-size: 12px;
     font-family: "Montserrat", sans-serif;
-    
 }
 a{
     text-decoration: none;
@@ -20,8 +18,6 @@ p{
     font-family: 'Montserrat', sans-serif;
     font-size: medium;
     text-decoration: none;
-
-    
 }
 .container{
     min-height: 100vh;
@@ -132,7 +128,6 @@ p{
     width: 100vw;
     
 }
-
 #services .services{
     flex-direction: column;
     text-align: center;
@@ -140,7 +135,6 @@ p{
     margin: 0 auto;
     padding: 100px 0;
 }
-
 #services .section-title{
     display:inline;
     padding: 10px 10px;
@@ -164,7 +158,6 @@ p{
     margin-right: auto;
     margin-bottom:30px;
 }
-
 #services .service-top p{
     font-size: 2rem;
     font-weight: bolder;
@@ -174,14 +167,12 @@ p{
     letter-spacing: .05rem;
     color: white
 }
-
 #services .service-bottom{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
-
 #services .service-item{
     flex-basis: 100%;
     display: flex;
@@ -194,12 +185,10 @@ p{
     background-size: cover;
     margin: 10px 5%;
 }
-
-    /* End of Services section  */
+/* End of Services section  */
 
 /* About us section */
 .about{
-
     background-position: 100%;
 }
 .about-title{
@@ -224,7 +213,6 @@ p{
     width: 100%;
 }
 #about .col-right h1{
-  
     display:block;
     width:fit-content;
     font-size: clamp(1em, 3em + 1vw, 4em);
@@ -237,7 +225,6 @@ p{
    
 }
 #about .col-right p{
-   
     width: 300px; 
     height: 460;
     border: 2px solid crimson;
@@ -260,13 +247,8 @@ p{
 #galery{
     background-color: black;
     background-attachment: fixed;
-    
-    
-   
 }
-
 #galery .carousel-inner{
- 
     max-width: 900px;
     max-height: 900px;
     margin-left: auto;
@@ -275,7 +257,6 @@ p{
     list-style: none;
     text-decoration: none;
     background-color:black;
-   
 }
 #contact{
     background-color:black;
