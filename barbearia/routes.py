@@ -56,3 +56,8 @@ def logout_page():
 @app.route("/agendamento")
 def agendamento_page():
     return render_template("calendar.html")
+
+
+@app.route("/contact")
+def contact_page():
+    return render_template("contact.html")
