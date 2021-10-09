@@ -1,3 +1,4 @@
+from flask_login.utils import login_required
 from barbearia import app
 from flask import render_template, redirect, url_for, flash
 from barbearia.forms import RegisterForm, LoginForm
@@ -41,10 +42,10 @@ def login_page():
         attempted_user = Usuario.query.filter_by(email=form.email.data).first()
         if attempted_user and attempted_user.check_password_correction(attempted_password=form.senha.data):
             login_user(attempted_user)
-            flash(f'Success! You are logged in as: {attempted_user.email}', category='success')
+            flash(f'Você está logado como: {attempted_user.email}', category='success')
             return redirect(url_for('home_page'))
         else:
-            flash('Username or password are inccorrect. Please try again', category='danger')
+            flash('Nome de usuário ou senha incorretos. Tente novamente.', category='danger')
     return render_template("login.html", form=form)
 
 @app.route("/logout")
@@ -54,6 +55,7 @@ def logout_page():
     return redirect(url_for("home_page"))
 
 @app.route("/agendamento")
+@login_required
 def agendamento_page():
     return render_template("calendar.html")
 

@@ -13,6 +13,8 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = "login_page"
+login_manager.login_message = "Você deve estar logado para acessar está página"
+login_manager.login_message_category = "danger"
 request = Request(app)
 
 from barbearia import routes
