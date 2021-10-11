@@ -31,7 +31,7 @@
         {% endif %}
         {% endwith %}
         <div class="content">
-            <div class="logo" {% if request.path == "/home" or request.path == "/" %} href="#home" {% else %} href="{{url_for('home_page')}}" {% endif %}><a href="#"><i class="bi bi-scissors"></i>Dom Fígaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i></a></div>
+            <div class="logo" {% if request.path == "/home" or request.path == "/" %} href="#home" {% else %} href="{{url_for('main.home_page')}}" {% endif %}><a href="#"><i class="bi bi-scissors"></i>Dom Fígaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i></a></div>
             <ul class="menu-list">
                 <div class="icon cancel-btn">
                     <i class="fas fa-times"></i>
@@ -43,17 +43,17 @@
                 <li><a href="#galery">Galeria</a></li>
                 <li><a href="contact">Contato</a></li>
                 {% else %}
-                <li><a class="active" href="{{url_for('home_page')}}">Home</a></li>
-                <li><a href="{{url_for('home_page')}}t">Sobre</a></li>
-                <li><a href="{{url_for('home_page')}}">Serviços</a></li>
-                <li><a href="{{url_for('home_page')}}">Galeria</a></li>
-                <li><a href="{{url_for('contact_page')}}">Contato</a></li>
+                <li><a class="active" href="{{url_for('main.home_page')}}">Home</a></li>
+                <li><a href="{{url_for('main.home_page')}}t">Sobre</a></li>
+                <li><a href="{{url_for('main.home_page')}}">Serviços</a></li>
+                <li><a href="{{url_for('main.home_page')}}">Galeria</a></li>
+                <li><a href="{{url_for('main.contact_page')}}">Contato</a></li>
                 {% endif %}
-                <li><a href="{{url_for('agendamento_page')}}">Agendamento</a></li>
+                <li><a href="{{url_for('agendamento.agendamento_page')}}">Agendamento</a></li>
                 {% if current_user.is_authenticated %}
-                    <li><a id="login" href="{{ url_for('logout_page') }}">Sair</a></li>
+                    <li><a id="login" href="{{ url_for('auth.logout_page') }}">Sair</a></li>
                 {% else %}
-                    <li><a id="login" href="{{ url_for('login_page') }}">Login</a></li>
+                    <li><a id="login" href="{{ url_for('auth.login_page') }}">Login</a></li>
                 {% endif %}
             </ul>
             <ul class="icon-list">

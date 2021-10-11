@@ -1,23 +1,13 @@
-from flask_login.utils import login_required
-from barbearia import app
-from flask import render_template, redirect, url_for, flash
-from barbearia.forms import RegisterForm, LoginForm
+from flask import render_template, redirect, url_for, flash, request
 from barbearia.models import Usuario
 from barbearia import db
 from barbearia.email_sender import email_cadastro
 from flask_login import login_user, logout_user
+from barbearia.auth import auth_bp
+from barbearia.auth.forms import RegisterForm, LoginForm
 
 
-
-db.create_all()
-
-@app.route('/home')
-@app.route('/')
-def home_page():
-    return render_template('home.html')
-
-
-@app.route('/cadastro', methods=["GET", "POST"])
+@auth_bp.route('/cadastro', methods=["GET", "POST"])
 def cadastro_page():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -26,7 +16,7 @@ def cadastro_page():
                                telefone=form.telefone.data, data_nascimento=form.data_nascimento.data)
         db.session.add(novo_usuario)
         db.session.commit()
-        email_cadastro(novo_usuario.username,novo_usuario.email)
+        # email_cadastro(novo_usuario.username,novo_usuario.email)
         login_user(novo_usuario)
         flash(f'Conta criada com sucesso! Você está logado como: {novo_usuario.username}', category='success')
         return redirect(url_for("home_page"))
@@ -35,7 +25,7 @@ def cadastro_page():
             flash(f'Aconteceu um erro durante o cadastro: {err_msg}', category='danger')
     return render_template('cadastro.html', form=form)
 
-@app.route('/login', methods=["GET", "POST"])
+@auth_bp.route('/login', methods=["GET", "POST"])
 def login_page():
     form = LoginForm()
     if form.validate_on_submit():
@@ -48,18 +38,8 @@ def login_page():
             flash('Nome de usuário ou senha incorretos. Tente novamente.', category='danger')
     return render_template("login.html", form=form)
 
-@app.route("/logout")
+@auth_bp.route("/logout")
 def logout_page():
     logout_user()
     flash("Você foi desconectado", category="info")
     return redirect(url_for("home_page"))
-
-@app.route("/agendamento")
-@login_required
-def agendamento_page():
-    return render_template("calendar.html")
-
-
-@app.route("/contact")
-def contact_page():
-    return render_template("contact.html")

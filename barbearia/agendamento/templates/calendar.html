@@ -2,17 +2,10 @@
 <html>
     <head>
     <meta charset='utf-8' />
-    <link href="{{ url_for('static', filename='main.min.css') }}"  rel='stylesheet'>
+    <!-- não altere a orderm os hrefs -->
+    <link href="{{ url_for('agendamento.static', filename='main.min.css') }}"  rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-    <link href="{{ url_for('static', filename='calendar.css') }}"  rel='stylesheet'>
-    <script src="{{ url_for('static', filename='main.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='pt-br.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-
-
+    <link href="{{ url_for('agendamento.static', filename='calendar.css') }}"  rel='stylesheet'>
 </head>
 <body>
 
@@ -47,7 +40,7 @@
       </div>
     </div>
 
-
+    <!-- Inicio modal de cadastro -->
     <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -58,19 +51,18 @@
             </button>
           </div>
           <div class="modal-body">
-  
+
             <!-- Inicio do Form -->
             <form id="addEvent" metho="POST">
                 <!-- Seleção de serviços  -->
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label"> Selecione o serviço</label>
+                <label class="col-sm-2 col-form-label"> {{ form.titulo.label }}</label>
                 <div class="col-sm-10">
                   <select name="servico" id="servico" class="form-control">
                     <option selected value="">Selecione...</option>
-                    <option value="Corte Simples">Corte Simples</option>
-                    <option value="Corte + Barba">Corte + Barba</option>
-                    <option value="Seladinho">Seladinho</option>
-                    <option value="Química">Química</option>
+                    {% for options in form.titulo %}
+                    <option value="{{ options }}">{{ option }}</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>
@@ -81,16 +73,16 @@
                   <div class="col-sm-10">
                     <select name="barbeiros" id="barbeiros" class="form-control">
                       <option selected>Selecione...</option>
-                      <option>barbeiro 1</option>
-                      <option>barbeiro 2 </option>
-                      <option>barbeiro 3</option>
+                      {% for options in form.barbeiro %}
+                      <option value="{{ options }}">{{ option }}</option>
+                      {% endfor %}
                     </select>
                 </div>
               </div>
 
                 <!-- Horario de atendimento -->
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"> Início do atendimento</label>
+                    <label class="col-sm-2 col-form-label"> {{ form.start_atend.label }}</label>
                     <div class="col-sm-10">
                       <input type="text" name="start" class="form-control date-time" id="start" onkeypress="DataHora(event, this)">
                     </div>
@@ -112,6 +104,54 @@
       </div>
     </div>
 
+    <script src="{{ url_for('agendamento.static', filename='main.min.js') }}"></script>
+    <script src="{{ url_for('agendamento.static', filename='pt-br.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('agendamento.static', filename='scriptCalendar.js') }}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+              locale: "pt-br",
+              headerToolbar: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+              },
+              navLinks: true, // can click day/week names to navigate views
+              businessHours: true, // display business hours
+              editable: true,
+              selectable: true,
+              events: [
+                  {% for agendamento in agendamentos%}
+                      {
+                          id : '{{agendamento.id}}',
+                          title: '{{agendamento.title}}',
+                          start: '{{agendamento.start_atend}}',
+                          end: '{{agendamento.end_atend}}',
+                      }
+                  {% endfor %}
+              ],
+              eventClick: function(info) {
+                  info.jsEvent.preventDefault();
 
+                  $('#visualizar #id').text(info.event.id)
+                  $('#visualizar #title').text(info.event.title)
+                  $('#visualizar #start').text(info.event.start.toLocaleString())
+                  $('#visualizar #end').text(info.event.end.toLocaleString())
+                  $('#visualizar').modal("show")
+                },
+              select: function(info){
+                  // alert("Início " + info.start.toLocaleString())
+                  $("#cadastrar #start").val(info.start.toLocaleString())
+                  $("#cadastrar #end").val(info.end.toLocaleString())
+                  $("#cadastrar").modal("show")
+              },
+              });
+          calendar.render();
+      });
+  </script>
 </body>
 </html>
